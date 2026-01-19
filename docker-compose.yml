@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  linkedinto:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: linkedinto-app
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - CORS_ORIGIN=*
+    env_file:
+      - .env.local
+    volumes:
+      - ./logs:/app/logs
+      - ./automation-db.json:/app/automation-db.json
+      - ./db.json:/app/db.json
+    healthcheck:
+      test: [ "CMD", "node", "-e", "require('http').get('http://localhost:3001/health/live', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" ]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 40s
+    networks:
+      - linkedinto-network
+  # Optional: Add Redis for caching (Phase 3)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: linkedinto-redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis-data:/data
+  #   networks:
+  #     - linkedinto-network
+
+  # Optional: Add PostgreSQL (Phase 2)
+  # postgres:
+  #   image: postgres:16-alpine
+  #   container_name: linkedinto-db
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_USER: linkedinto
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
+  #     POSTGRES_DB: linkedinto
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   networks:
+  #     - linkedinto-network
+
+networks:
+  linkedinto-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  postgres-data:

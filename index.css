@@ -1,0 +1,313 @@
+/* LinkedInto - Ultra Premium Dark Theme v3.0 */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Core Palette - Deep Indigo & LinkedIn Blue */
+  --brand-primary: #0a66c2;
+  --brand-primary-glow: rgba(10, 102, 194, 0.4);
+  --brand-secondary: #6366f1;
+  --brand-secondary-glow: rgba(99, 102, 241, 0.3);
+  
+  /* Dark Mode Palette */
+  --bg-deep: #030712;
+  --bg-surface: #0f172a;
+  --bg-card: rgba(30, 41, 59, 0.7);
+  --bg-glass: rgba(15, 23, 42, 0.75);
+  --bg-glass-bright: rgba(255, 255, 255, 0.03);
+  
+  /* Accents */
+  --accent-cyan: #06b6d4;
+  --accent-purple: #a855f7;
+  --accent-rose: #f43f5e;
+  
+  /* Text Strategy */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* Border Strategy */
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-glass-bright: rgba(10, 102, 194, 0.2);
+  
+  /* Shadows & Glows */
+  --shadow-premium: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px var(--brand-primary-glow);
+  --shadow-inner: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  
+  /* Transitions */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: all 0.6s var(--ease-premium);
+  --transition-med: all 0.3s var(--ease-premium);
+  --transition-fast: all 0.15s var(--ease-premium);
+}
+
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Dynamic Animated Background */
+.bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+.blob-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: blur(120px);
+  opacity: 0.6;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: blob-float 20s infinite alternate;
+}
+
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--brand-primary);
+  top: -100px;
+  left: -100px;
+  opacity: 0.4;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--brand-secondary);
+  bottom: -100px;
+  right: -100px;
+  animation-delay: -5s;
+  opacity: 0.3;
+}
+
+.blob-3 {
+  width: 400px;
+  height: 400px;
+  background: var(--accent-purple);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-duration: 15s;
+  opacity: 0.2;
+}
+
+@keyframes blob-float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(100px, -50px) scale(1.1); }
+  66% { transform: translate(-50px, 100px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* Premium Glassmorphism Utility */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-premium), var(--shadow-inner);
+}
+
+.glass-bright {
+  background: var(--bg-glass-bright);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-hover:hover {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: var(--border-glass-bright);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium), 0 0 30px rgba(10, 102, 194, 0.15);
+}
+
+/* Navbar Custom Overhaul */
+.navbar {
+  background: rgba(3, 7, 18, 0.8) !important;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border-glass) !important;
+  padding: 0.75rem 0;
+}
+
+.logo-icon {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary)) !important;
+  box-shadow: 0 0 25px var(--brand-primary-glow) !important;
+  border-radius: 12px;
+}
+
+.logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Tab Navigation Makeover */
+.tab-nav {
+  background: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid var(--border-glass) !important;
+  padding: 4px !important;
+  border-radius: 20px !important;
+}
+
+.tab-btn {
+  color: var(--text-secondary) !important;
+  transition: var(--transition-med) !important;
+  border-radius: 16px !important;
+}
+
+.tab-btn:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary)) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px -5px rgba(10, 102, 194, 0.5) !important;
+}
+
+.tab-btn.active::after {
+  display: none !important;
+}
+
+/* Premium Button Overhaul */
+.btn-premium {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary)) !important;
+  border-radius: 16px !important;
+  font-family: 'Outfit', sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.05em !important;
+  padding: 1rem 2rem !important;
+  box-shadow: 0 10px 30px -5px var(--brand-primary-glow) !important;
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 15px 40px -5px var(--brand-primary-glow) !important;
+}
+
+/* Form Styling */
+.form-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-glass) !important;
+  box-shadow: var(--shadow-premium) !important;
+  backdrop-filter: blur(10px);
+}
+
+.form-label {
+  color: var(--text-secondary) !important;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.08em;
+}
+
+.form-input {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border: 1px solid var(--border-glass) !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+}
+
+.form-input:focus {
+  border-color: var(--brand-primary) !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  box-shadow: 0 0 0 4px var(--brand-primary-glow) !important;
+}
+
+/* LinkedIn Preview Premium */
+.preview-card {
+  background: #0f172a !important;
+  border: 1px solid var(--border-glass) !important;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.preview-header {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-bottom: 1px solid var(--border-glass) !important;
+}
+
+.preview-content {
+  color: #e2e8f0 !important;
+}
+
+/* Analytics & Dashboard Cards */
+.stat-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-glass) !important;
+  box-shadow: var(--shadow-premium) !important;
+}
+
+.stat-icon {
+  background: rgba(10, 102, 194, 0.1) !important;
+  color: var(--brand-primary) !important;
+}
+
+.stat-value {
+  color: #fff !important;
+}
+
+/* Scrollbar Fix */
+::-webkit-scrollbar-thumb {
+  background: var(--border-glass) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-primary) !important;
+}
+
+/* Pro Tip Glow */
+.pro-tip {
+  background: linear-gradient(135deg, rgba(10, 102, 194, 0.1), rgba(99, 102, 241, 0.1)) !important;
+  border: 1px solid var(--border-glass-bright) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+}
+
+.pro-tip h4 {
+  color: var(--accent-cyan) !important;
+}
+
+/* Animations */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s var(--ease-premium) forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .blob-1 { width: 300px; height: 300px; }
+  .blob-2 { width: 250px; height: 250px; }
+}
