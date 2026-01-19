@@ -6,7 +6,7 @@
       "url": "https://www.healthcaredive.com/feeds/news/",
       "enabled": true,
       "category": "Healthcare Business",
-      "lastFetch": "2026-01-19T19:00:00.502Z",
+      "lastFetch": "2026-01-19T21:00:02.702Z",
       "articleCount": 22,
       "errors": []
     },
@@ -114,7 +114,7 @@
       "url": "https://www.statnews.com/feed/",
       "enabled": true,
       "category": "Health & Medicine",
-      "lastFetch": "2026-01-19T19:00:01.732Z",
+      "lastFetch": "2026-01-19T21:00:04.768Z",
       "articleCount": 60,
       "errors": []
     },
@@ -206,8 +206,8 @@
       "url": "https://phys.org/rss-feed/physics-news",
       "enabled": true,
       "category": "Physics & Gravity",
-      "lastFetch": "2026-01-19T19:00:03.138Z",
-      "articleCount": 38,
+      "lastFetch": "2026-01-19T21:00:07.729Z",
+      "articleCount": 41,
       "errors": []
     },
     {
@@ -216,8 +216,8 @@
       "url": "https://www.medpagetoday.com/rss/headlines.xml",
       "enabled": true,
       "category": "Medical News",
-      "lastFetch": "2026-01-19T19:00:04.495Z",
-      "articleCount": 28,
+      "lastFetch": "2026-01-19T21:00:11.509Z",
+      "articleCount": 29,
       "errors": []
     },
     {
@@ -226,7 +226,7 @@
       "url": "https://techcrunch.com/feed/",
       "enabled": true,
       "category": "Tech Industry",
-      "lastFetch": "2026-01-19T19:00:05.637Z",
+      "lastFetch": "2026-01-19T21:00:12.961Z",
       "articleCount": 34,
       "errors": []
     },
@@ -236,8 +236,8 @@
       "url": "https://www.theverge.com/rss/index.xml",
       "enabled": true,
       "category": "Technology",
-      "lastFetch": "2026-01-19T19:00:06.731Z",
-      "articleCount": 31,
+      "lastFetch": "2026-01-19T21:00:14.207Z",
+      "articleCount": 33,
       "errors": []
     },
     {
@@ -246,7 +246,7 @@
       "url": "https://www.wired.com/feed/rss",
       "enabled": true,
       "category": "Tech & Culture",
-      "lastFetch": "2026-01-19T19:00:07.821Z",
+      "lastFetch": "2026-01-19T21:00:15.400Z",
       "articleCount": 71,
       "errors": []
     },
@@ -256,8 +256,8 @@
       "url": "https://feeds.arstechnica.com/arstechnica/index",
       "enabled": true,
       "category": "Technology",
-      "lastFetch": "2026-01-19T19:00:08.911Z",
-      "articleCount": 26,
+      "lastFetch": "2026-01-19T21:00:16.573Z",
+      "articleCount": 29,
       "errors": []
     },
     {
@@ -266,7 +266,7 @@
       "url": "https://www.technologyreview.com/feed/",
       "enabled": true,
       "category": "Tech Innovation",
-      "lastFetch": "2026-01-19T19:00:10.080Z",
+      "lastFetch": "2026-01-19T21:00:17.817Z",
       "articleCount": 13,
       "errors": []
     }
@@ -4147,6 +4147,114 @@
       "pubDate": "2026-01-19T13:39:00.000Z",
       "processed": false,
       "createdAt": "2026-01-19T19:00:10.080Z"
+    },
+    {
+      "id": "phys-org-physics-1768856407729-zk23lg983",
+      "feedId": "phys-org-physics",
+      "feedName": "Phys.org Physics News",
+      "category": "Physics & Gravity",
+      "title": "How pointing errors impact quantum key distribution systems",
+      "description": "Quantum key distribution (QKD) is an emerging communication technology that utilizes quantum mechanics principles to ensure highly secure communication between two parties. It enables the sender and receiver to generate a shared secret key over a channel that may be monitored by an attacker. Any attempt to eavesdrop introduces detectable errors in the quantum signals, allowing communicating parties to detect if communication is compromised via QKD protocols.",
+      "link": "https://phys.org/news/2026-01-errors-impact-quantum-key.html",
+      "pubDate": "2026-01-19T20:30:06.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:07.729Z"
+    },
+    {
+      "id": "phys-org-physics-1768856407729-hxdqpardb",
+      "feedId": "phys-org-physics",
+      "feedName": "Phys.org Physics News",
+      "category": "Physics & Gravity",
+      "title": "Ultrafast spectroscopy reveals step-by-step energy flow in germanium semiconductors",
+      "description": "Whether in a smartphone or laptop, semiconductors form the basis of modern electronics and accompany us constantly in everyday life. The processes taking place inside these materials are the subject of ongoing research. When the electrons in a semiconductor material are activated using light or an electrical voltage, the excited electrons also set the atomic lattice in motion. This results in collective vibrations of the atoms, known as phonons or lattice vibrations, which interact with each other and with the electrons themselves.",
+      "link": "https://phys.org/news/2026-01-ultrafast-spectroscopy-reveals-energy-germanium.html",
+      "pubDate": "2026-01-19T20:11:30.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:07.729Z"
+    },
+    {
+      "id": "phys-org-physics-1768856407729-dbbw0u9lr",
+      "feedId": "phys-org-physics",
+      "feedName": "Phys.org Physics News",
+      "category": "Physics & Gravity",
+      "title": "Physicists uncover hidden magnetic order in the mysterious pseudogap phase",
+      "description": "Physicists have uncovered a link between magnetism and a mysterious phase of matter called the pseudogap, which appears in certain quantum materials just above the temperature at which they become superconducting. The findings could help researchers design new materials with sought-after properties such as high-temperature superconductivity, in which electric current flows without resistance.",
+      "link": "https://phys.org/news/2026-01-physicists-uncover-hidden-magnetic-mysterious.html",
+      "pubDate": "2026-01-19T20:00:10.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:07.729Z"
+    },
+    {
+      "id": "custom-1768639490246-1768856411503-slhxmofb3",
+      "feedId": "custom-1768639490246",
+      "feedName": "MedPage Today",
+      "category": "Medical News",
+      "title": "Food Companies Are Targeting Users of Weight-Loss Drugs With 'GLP-1 Friendly' Labels",
+      "description": "(MedPage Today) -- Meals and snacks with \"GLP-1 Friendly\" labels on the packaging are becoming more common in U.S. supermarkets as a growing number of Americans try obesity drugs like semaglutide (Wegovy) and tirzepatide (Zepbound) to lose weight...",
+      "link": "https://www.medpagetoday.com/primarycare/dietnutrition/119453",
+      "pubDate": "2026-01-19T19:00:00.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:11.508Z"
+    },
+    {
+      "id": "custom-1768639494118-1768856414207-uekdf2s78",
+      "feedId": "custom-1768639494118",
+      "feedName": "The Verge",
+      "category": "Technology",
+      "title": "How much can a city take?",
+      "description": "I live in Minneapolis. I grew up not far from here, in a suburb of St. Paul; after stints on both coasts, my wife and I settled here to raise our daughters in a freezing state that had always welcomed us warmly. As the ongoing occupation by over 3,000 ICE agents stretches into its third week - with no clear end in sight - I've received a steady string of messages from increasingly concerned friends across the country. They all start the same way: Uh… is this really as bad as it looks from the outside?\nMy answer to that question is easy: no, it's worse. Not since the pandemic has my daily life been ruptured in such a frightening and surreal  …\nRead the full story at The Verge.",
+      "link": "https://www.theverge.com/policy/864195/minneapolis-ice-invasion-organizing-immigration",
+      "pubDate": "2026-01-19T21:00:00.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:14.207Z"
+    },
+    {
+      "id": "custom-1768639494118-1768856414207-3e2unlnb9",
+      "feedId": "custom-1768639494118",
+      "feedName": "The Verge",
+      "category": "Technology",
+      "title": "A second US Sphere could come to Maryland",
+      "description": "Sphere Entertainment, the company behind the eye-catching interactive venue in Las Vegas, has announced its \"intent to develop\" another Sphere in Maryland that will be located 15 minutes south of Washington, DC. A timeline and exact location haven't been finalized, but the Maryland Sphere would be the company's second venue in the US, following plans to build a Sphere in Abu Dhabi announced in October 2024.\nThe second US sphere would be built in an area known as National Harbor in Prince George's County, Maryland. Located along the Potomac River, National Harbor currently features a convention center, multiple hotels, restaurants, and shops …\nRead the full story at The Verge.",
+      "link": "https://www.theverge.com/tech/864192/sphere-entertainment-mini-venue-maryland-national-harbor",
+      "pubDate": "2026-01-19T19:35:52.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:14.207Z"
+    },
+    {
+      "id": "custom-1768639498027-1768856416572-qk62r8oxs",
+      "feedId": "custom-1768639498027",
+      "feedName": "Ars Technica",
+      "category": "Technology",
+      "title": "Signs point to a sooner-rather-than-later M5 MacBook Pro refresh",
+      "description": "Delayed shipping times for current models sometimes means an update is imminent.",
+      "link": "https://arstechnica.com/gadgets/2026/01/signs-point-to-a-sooner-rather-than-later-m5-macbook-pro-refresh/",
+      "pubDate": "2026-01-19T19:52:22.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:16.573Z"
+    },
+    {
+      "id": "custom-1768639498027-1768856416573-n9qsk0gls",
+      "feedId": "custom-1768639498027",
+      "feedName": "Ars Technica",
+      "category": "Technology",
+      "title": "Elon Musk accused of making up math to squeeze $134B from OpenAI, Microsoft",
+      "description": "Musk's math reduced ChatGPT inventors' contributions to \"zero,\" OpenAI argued.",
+      "link": "https://arstechnica.com/tech-policy/2026/01/elon-musk-accused-of-making-up-math-to-squeeze-134b-from-openai-microsoft/",
+      "pubDate": "2026-01-19T19:04:18.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:16.573Z"
+    },
+    {
+      "id": "custom-1768639498027-1768856416573-utg4nw4at",
+      "feedId": "custom-1768639498027",
+      "feedName": "Ars Technica",
+      "category": "Technology",
+      "title": "Asus confirms its smartphone business is on indefinite hiatus",
+      "description": "Asus chairman Jonney Shih sees AI applications as the company's main focus going forward.",
+      "link": "https://arstechnica.com/gadgets/2026/01/asus-confirms-its-smartphone-business-is-on-indefinite-hiatus/",
+      "pubDate": "2026-01-19T18:24:49.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T21:00:16.573Z"
     }
   ],
   "scheduledPosts": [
