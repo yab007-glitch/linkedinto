@@ -8,8 +8,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DB_TYPE = process.env.DATABASE_TYPE || 'json'; // 'json' or 'mysql'
-const DB_PATH = path.join(__dirname, '..', 'db.json');
-const AUTOMATION_DB_PATH = path.join(__dirname, '..', 'automation-db.json');
+// Use /app/data directory in production (Railway), fallback to project root in dev
+const dataDir = process.env.NODE_ENV === 'production' ? '/app/data' : path.join(__dirname, '..');
+const DB_PATH = path.join(dataDir, 'db.json');
+const AUTOMATION_DB_PATH = path.join(dataDir, 'automation-db.json');
 
 // In-memory cache for JSON mode
 let db = null;
