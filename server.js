@@ -69,7 +69,10 @@ import {
   fillTemplate,
   saveCustomTemplate,
   getAllTemplatesWithCustom,
-  deleteCustomTemplate
+  deleteCustomTemplate,
+  getAllTemplates,
+  getTemplateById,
+  getTemplatesByCategory
 } from './services/template-service.js';
 
 // Load env vars
