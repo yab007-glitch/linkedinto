@@ -148,7 +148,7 @@ if (existsSync(distPath)) {
   });
   
   // For SPA - serve index.html for all non-API routes
-  app.get('*', (req, res, next) => {
+  app.get('/*catchAll', (req, res, next) => {
     // Skip API routes
     if (req.path.startsWith('/api') || req.path.startsWith('/health')) {
       return next();
