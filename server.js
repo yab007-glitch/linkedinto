@@ -109,7 +109,7 @@ app.use(compression());
 
 // CORS middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: process.env.CORS_ORIGIN || true,
   credentials: true,
 }));
 
@@ -141,9 +141,14 @@ if (existsSync(distPath)) {
   // Serve static files from the dist folder
   app.use(express.static(distPath));
   
+  // Log all incoming requests for debugging
+  app.use((req, res, next) => {
+    logger.info(`${req.method} ${req.path}`);
+    next();
+  });
+  
   // For SPA - serve index.html for all non-API routes
-  // Note: Express 5 requires named parameters, so use {*splat} instead of *
-  app.get('/{*splat}', (req, res, next) => {
+  app.get('*', (req, res, next) => {
     // Skip API routes
     if (req.path.startsWith('/api') || req.path.startsWith('/health')) {
       return next();
