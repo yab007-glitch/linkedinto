@@ -3,15 +3,41 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { getPool } from './database.js';
 import logger from './logger.js';
+import { existsSync, mkdirSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DB_TYPE = process.env.DATABASE_TYPE || 'json'; // 'json' or 'mysql'
+
 // Use /app/data directory in production (Railway), fallback to project root in dev
 const dataDir = process.env.NODE_ENV === 'production' ? '/app/data' : path.join(__dirname, '..');
+
+// Ensure data directory exists in production
+if (process.env.NODE_ENV === 'production' && !existsSync(dataDir)) {
+  logger.info(`Creating data directory: ${dataDir}`);
+  mkdirSync(dataDir, { recursive: true });
+}
+
+// Define paths
 const DB_PATH = path.join(dataDir, 'db.json');
 const AUTOMATION_DB_PATH = path.join(dataDir, 'automation-db.json');
+
+// Validate paths are properly initialized
+if (!DB_PATH || !AUTOMATION_DB_PATH) {
+  const error = new Error(`Database paths not properly initialized: DB_PATH=${DB_PATH}, AUTOMATION_DB_PATH=${AUTOMATION_DB_PATH}`);
+  logger.error(error.message);
+  throw error;
+}
+
+// Validate paths are strings
+if (typeof DB_PATH !== 'string' || typeof AUTOMATION_DB_PATH !== 'string') {
+  const error = new Error(`Database paths must be strings: DB_PATH type=${typeof DB_PATH}, AUTOMATION_DB_PATH type=${typeof AUTOMATION_DB_PATH}`);
+  logger.error(error.message);
+  throw error;
+}
+
+logger.info(`Database paths initialized: DB_PATH=${DB_PATH}, AUTOMATION_DB_PATH=${AUTOMATION_DB_PATH}`);
 
 // In-memory cache for JSON mode
 let db = null;
@@ -106,4 +132,22 @@ export function getDatabaseType() {
   return DB_TYPE;
 }
 
-export default { initializeDatabase, getDB, saveDB, saveAutomationDB, getDatabaseType };
+// Export paths for use in other modules
+export const DB_PATHS = {
+  MAIN_DB: DB_PATH,
+  AUTOMATION_DB: AUTOMATION_DB_PATH,
+  DATA_DIR: dataDir
+};
+
+export { DB_PATH, AUTOMATION_DB_PATH, dataDir };
+
+export default {
+  initializeDatabase,
+  getDB,
+  saveDB,
+  saveAutomationDB,
+  getDatabaseType,
+  MAIN_DB: DB_PATH,
+  AUTOMATION_DB: AUTOMATION_DB_PATH,
+  DATA_DIR: dataDir
+};
