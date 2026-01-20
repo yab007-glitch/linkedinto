@@ -313,6 +313,10 @@ button, input, select, textarea {
 .text-yellow-400 { color: #facc15; }
 .text-yellow-500 { color: #eab308; }
 .text-linkedin-blue { color: #0a66c2; }
+.text-blue-700 { color: #1d4ed8; }
+.text-blue-800 { color: #1e40af; }
+.text-blue-900 { color: #1e3a8a; }
+.text-indigo-600 { color: #4f46e5; }
 
 .bg-white { background-color: #ffffff; }
 .bg-black { background-color: #000000; }
