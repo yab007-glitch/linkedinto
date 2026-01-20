@@ -171,7 +171,7 @@ export async function fetchFeed(feedId) {
       }
 
       const article = {
-        id: `${feedId}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        id: `${feedId}-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
         feedId: feed.id,
         feedName: feed.name,
         category: feed.category,

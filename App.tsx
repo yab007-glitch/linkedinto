@@ -10,8 +10,8 @@ import { AnalyticsDashboard } from './components/AnalyticsDashboard';
 import { TemplatesManager } from './components/TemplatesManager';
 import { ToastProvider, useToast } from './components/ui/ToastContext';
 import type { GeneratedPost, PostConfig, LinkedInProfile } from './types';
-import { generateLinkedInPost, refinePost } from './services/huggingfaceService';
-import { getStoredProfile, saveProfile, getAccessToken, postToLinkedIn } from './services/linkedinService';
+import { generateLinkedInPost, refinePost } from './services/huggingfaceService.js';
+import { getStoredProfile, saveProfile, getAccessToken, postToLinkedIn } from './services/linkedinService.js';
 
 // Tab icons as SVG components
 const TabIcons = {

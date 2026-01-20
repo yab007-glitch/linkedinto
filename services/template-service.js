@@ -239,7 +239,7 @@ export function fillTemplate(templateId, variables) {
 
   // Replace all variables
   Object.keys(variables).forEach(key => {
-    const regex = new RegExp(`{{${key}}}`, 'g');
+    const regex = new RegExp(`{{${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}}}`, 'g');
     content = content.replace(regex, variables[key] || '');
   });
 

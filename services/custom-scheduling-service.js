@@ -64,8 +64,8 @@ function calculateIntervalPostTime(intervalHours) {
 }
 
 // Calculate next post time for custom scheduling
-function calculateCustomPostTime(config) {
-  const now = new Date();
+function calculateCustomPostTime(config, _overrideNow) {
+  const now = _overrideNow || new Date();
   const customSchedule = config.customSchedule || DEFAULT_CUSTOM_SCHEDULE;
   const pauseOnWeekends = config.pauseOnWeekends || false;
   

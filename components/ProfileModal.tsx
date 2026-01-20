@@ -73,7 +73,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose, onS
       }
       
       setMode('manual'); // Switch back to manual so they can review/edit
-    } catch (err: any) {
+    } catch (err: Error) {
       console.error(err);
       if (err.message && (err.message.includes('Failed to fetch') || err.message.includes('URI malformed'))) {
          setError("Network Error: Could not connect via proxy. Please enter details manually.");

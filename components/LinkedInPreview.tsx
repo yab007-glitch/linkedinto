@@ -62,7 +62,7 @@ export const LinkedInPreview: React.FC<LinkedInPreviewProps> = ({
             await postToLinkedIn(post.content, linkedInProfile.id);
             setPostStatus('success');
             setTimeout(() => setPostStatus('idle'), 3000);
-        } catch (error: any) {
+        } catch (error: Error) {
             console.error(error);
             if (error.message === "This content has already been posted to LinkedIn.") {
                 setPostStatus('success');

@@ -109,7 +109,7 @@ app.use(compression());
 
 // CORS middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
+  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
   credentials: true,
 }));
 
@@ -389,7 +389,7 @@ app.get('/api/scheduled-posts', async (_req, res) => {
 // Get upcoming posts
 app.get('/api/scheduled-posts/upcoming', async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit, 10) || 10;
+    const limit = Math.max(1, Math.min(100, parseInt(req.query.limit, 10) || 10));
     const posts = await getUpcomingPosts(limit);
     res.json(posts);
   } catch (error) {
@@ -496,7 +496,7 @@ app.post('/api/automation/generate-now', async (_req, res) => {
 // Get analytics summary
 app.get('/api/analytics/summary', async (req, res) => {
   try {
-    const days = parseInt(req.query.days, 10) || 30;
+    const days = Math.max(1, Math.min(365, parseInt(req.query.days, 10) || 30));
     const summary = await getAnalyticsSummary(days);
     res.json(summary);
   } catch (error) {
@@ -508,7 +508,7 @@ app.get('/api/analytics/summary', async (req, res) => {
 // Get top performing posts
 app.get('/api/analytics/top-posts', async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit, 10) || 10;
+    const limit = Math.max(1, Math.min(100, parseInt(req.query.limit, 10) || 10));
     const metric = req.query.metric || 'engagementRate';
     const topPosts = await getTopPerformingPosts(limit, metric);
     res.json(topPosts);
@@ -521,7 +521,7 @@ app.get('/api/analytics/top-posts', async (req, res) => {
 // Get top performing topics
 app.get('/api/analytics/top-topics', async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit, 10) || 5;
+    const limit = Math.max(1, Math.min(100, parseInt(req.query.limit, 10) || 5));
     const topics = await getTopPerformingTopics(limit);
     res.json(topics);
   } catch (error) {
@@ -544,7 +544,7 @@ app.get('/api/analytics/optimal-times', async (_req, res) => {
 // Get full analytics report
 app.get('/api/analytics/report', async (req, res) => {
   try {
-    const days = parseInt(req.query.days, 10) || 30;
+    const days = Math.max(1, Math.min(365, parseInt(req.query.days, 10) || 30));
     const report = await generateAnalyticsReport(days);
     res.json(report);
   } catch (error) {
@@ -605,7 +605,7 @@ app.put('/api/schedule/config', async (req, res) => {
 // Get upcoming scheduled times
 app.get('/api/schedule/upcoming', async (req, res) => {
   try {
-    const count = parseInt(req.query.count, 10) || 10;
+    const count = Math.max(1, Math.min(100, parseInt(req.query.count, 10) || 10));
     const times = await getUpcomingScheduledTimes(count);
     res.json(times);
   } catch (error) {

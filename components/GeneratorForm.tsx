@@ -5,6 +5,7 @@ import { Button } from './ui/Button';
 interface GeneratorFormProps {
   onGenerate: (config: PostConfig) => Promise<void>;
   isLoading: boolean;
+  hasToken?: boolean;
   initialPrompt?: string;
 }
 

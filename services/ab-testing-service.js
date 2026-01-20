@@ -10,7 +10,7 @@ export async function createABTest(testConfig) {
   }
 
   const test = {
-    id: `test-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    id: `test-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
     name: testConfig.name,
     description: testConfig.description || '',
     variants: testConfig.variants.map((variant, index) => ({

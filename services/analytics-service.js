@@ -55,7 +55,7 @@ export async function trackPostEngagement(postId, linkedInPostId) {
     return analyticsEntry;
 
   } catch (error) {
-    console.error('❌ Failed to track engagement:', error.message);
+    console.error('❌ Failed to track engagement:', error?.message || String(error));
     return null;
   }
 }
@@ -110,10 +110,10 @@ export async function getTopPerformingPosts(limit = 10, metric = 'engagementRate
   if (!db.analytics) return [];
 
   return db.analytics
-    .sort((a, b) => parseFloat(b[metric]) - parseFloat(a[metric]))
+    .sort((a, b) => (parseFloat(b[metric]) || 0) - (parseFloat(a[metric]) || 0))
     .slice(0, limit)
     .map(a => {
-      const post = db.scheduledPosts.find(p => p.id === a.postId);
+      const post = db.scheduledPosts?.find(p => p.id === a.postId);
       return {
         ...a,
         post: post ? {
@@ -195,10 +195,10 @@ export async function getTopPerformingTopics(limit = 5) {
   const topicStats = {};
 
   db.analytics.forEach(analytics => {
-    const post = db.scheduledPosts.find(p => p.id === analytics.postId);
+    const post = db.scheduledPosts?.find(p => p.id === analytics.postId);
     if (!post) return;
 
-    const article = db.articles.find(a => a.id === post.articleId);
+    const article = db.articles?.find(a => a.id === post.articleId);
     if (!article) return;
 
     const category = article.category;

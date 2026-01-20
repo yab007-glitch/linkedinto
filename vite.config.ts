@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [react()],
     define: {
-      'process.env.HUGGINGFACE_API_KEY': JSON.stringify(env.HUGGINGFACE_API_KEY)
+      // HUGGINGFACE_API_KEY removed from client bundle for security
     },
     resolve: {
       alias: {
