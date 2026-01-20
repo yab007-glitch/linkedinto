@@ -30,6 +30,7 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV DATA_DIR=/app/data
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
