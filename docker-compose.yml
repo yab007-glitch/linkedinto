@@ -1,18 +1,49 @@
 version: '3.8'
 
 services:
-  linkedinto:
+  mysql:
+    image: mysql:8.0
+    container_name: linkedinto-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-linkedinto_root_pass}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-linkedinto_db}
+      MYSQL_USER: ${MYSQL_USER:-linkedinto_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-linkedinto_pass}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/migrations:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-linkedinto_root_pass}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  app:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: linkedinto-app
     restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
     ports:
       - "3001:3001"
     environment:
       - NODE_ENV=production
       - PORT=3001
       - CORS_ORIGIN=http://localhost:5173
+      - DATABASE_TYPE=mysql
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-linkedinto_db}
+      - MYSQL_USER=${MYSQL_USER:-linkedinto_user}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-linkedinto_pass}
     env_file:
       - .env.local
     volumes:
@@ -26,7 +57,7 @@ services:
       retries: 3
       start_period: 40s
     networks:
-      - linkedinto-network
+      - app-network
   # Optional: Add Redis for caching (Phase 3)
   # redis:
   #   image: redis:7-alpine
@@ -37,7 +68,7 @@ services:
   #   volumes:
   #     - redis-data:/data
   #   networks:
-  #     - linkedinto-network
+  #     - app-network
 
   # Optional: Add PostgreSQL (Phase 2)
   # postgres:
@@ -53,12 +84,13 @@ services:
   #   volumes:
   #     - postgres-data:/var/lib/postgresql/data
   #   networks:
-  #     - linkedinto-network
+  #     - app-network
 
 networks:
-  linkedinto-network:
+  app-network:
     driver: bridge
 
 volumes:
+  mysql_data:
   redis-data:
   postgres-data:
