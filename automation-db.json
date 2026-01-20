@@ -6,7 +6,7 @@
       "url": "https://www.healthcaredive.com/feeds/news/",
       "enabled": true,
       "category": "Healthcare Business",
-      "lastFetch": "2026-01-19T21:00:02.702Z",
+      "lastFetch": "2026-01-20T03:00:01.286Z",
       "articleCount": 22,
       "errors": []
     },
@@ -114,8 +114,8 @@
       "url": "https://www.statnews.com/feed/",
       "enabled": true,
       "category": "Health & Medicine",
-      "lastFetch": "2026-01-19T21:00:04.768Z",
-      "articleCount": 60,
+      "lastFetch": "2026-01-20T03:00:02.478Z",
+      "articleCount": 62,
       "errors": []
     },
     {
@@ -206,8 +206,8 @@
       "url": "https://phys.org/rss-feed/physics-news",
       "enabled": true,
       "category": "Physics & Gravity",
-      "lastFetch": "2026-01-19T21:00:07.729Z",
-      "articleCount": 41,
+      "lastFetch": "2026-01-20T03:00:03.901Z",
+      "articleCount": 42,
       "errors": []
     },
     {
@@ -216,8 +216,8 @@
       "url": "https://www.medpagetoday.com/rss/headlines.xml",
       "enabled": true,
       "category": "Medical News",
-      "lastFetch": "2026-01-19T21:00:11.509Z",
-      "articleCount": 29,
+      "lastFetch": "2026-01-20T03:00:05.021Z",
+      "articleCount": 30,
       "errors": []
     },
     {
@@ -226,7 +226,7 @@
       "url": "https://techcrunch.com/feed/",
       "enabled": true,
       "category": "Tech Industry",
-      "lastFetch": "2026-01-19T21:00:12.961Z",
+      "lastFetch": "2026-01-20T03:00:06.142Z",
       "articleCount": 34,
       "errors": []
     },
@@ -236,8 +236,8 @@
       "url": "https://www.theverge.com/rss/index.xml",
       "enabled": true,
       "category": "Technology",
-      "lastFetch": "2026-01-19T21:00:14.207Z",
-      "articleCount": 33,
+      "lastFetch": "2026-01-20T03:00:07.320Z",
+      "articleCount": 34,
       "errors": []
     },
     {
@@ -246,7 +246,7 @@
       "url": "https://www.wired.com/feed/rss",
       "enabled": true,
       "category": "Tech & Culture",
-      "lastFetch": "2026-01-19T21:00:15.400Z",
+      "lastFetch": "2026-01-20T03:00:08.407Z",
       "articleCount": 71,
       "errors": []
     },
@@ -256,8 +256,8 @@
       "url": "https://feeds.arstechnica.com/arstechnica/index",
       "enabled": true,
       "category": "Technology",
-      "lastFetch": "2026-01-19T21:00:16.573Z",
-      "articleCount": 29,
+      "lastFetch": "2026-01-20T03:00:09.490Z",
+      "articleCount": 31,
       "errors": []
     },
     {
@@ -266,7 +266,7 @@
       "url": "https://www.technologyreview.com/feed/",
       "enabled": true,
       "category": "Tech Innovation",
-      "lastFetch": "2026-01-19T21:00:17.817Z",
+      "lastFetch": "2026-01-20T03:00:10.666Z",
       "articleCount": 13,
       "errors": []
     }
@@ -4205,7 +4205,7 @@
       "description": "I live in Minneapolis. I grew up not far from here, in a suburb of St. Paul; after stints on both coasts, my wife and I settled here to raise our daughters in a freezing state that had always welcomed us warmly. As the ongoing occupation by over 3,000 ICE agents stretches into its third week - with no clear end in sight - I've received a steady string of messages from increasingly concerned friends across the country. They all start the same way: Uh… is this really as bad as it looks from the outside?\nMy answer to that question is easy: no, it's worse. Not since the pandemic has my daily life been ruptured in such a frightening and surreal  …\nRead the full story at The Verge.",
       "link": "https://www.theverge.com/policy/864195/minneapolis-ice-invasion-organizing-immigration",
       "pubDate": "2026-01-19T21:00:00.000Z",
-      "processed": false,
+      "processed": true,
       "createdAt": "2026-01-19T21:00:14.207Z"
     },
     {
@@ -4255,6 +4255,90 @@
       "pubDate": "2026-01-19T18:24:49.000Z",
       "processed": false,
       "createdAt": "2026-01-19T21:00:16.573Z"
+    },
+    {
+      "id": "stat-news-1768863602283-5eykg50ul",
+      "feedId": "stat-news",
+      "feedName": "STAT News",
+      "category": "Health & Medicine",
+      "title": "Bariatric surgery beats GLP-1s for type 2 diabetes across income levels, study says",
+      "description": "Across all income levels, bariatric surgery resulted in better diabetes control than GLP-1s or similar medications, a study found.",
+      "link": "https://www.statnews.com/2026/01/19/diabetes-study-bariatric-surgery-better-than-glp-1s/?utm_campaign=rss",
+      "pubDate": "2026-01-19T22:00:00.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T23:00:02.283Z"
+    },
+    {
+      "id": "custom-1768639490246-1768863604840-1tvffjep8",
+      "feedId": "custom-1768639490246",
+      "feedName": "MedPage Today",
+      "category": "Medical News",
+      "title": "Post-Mpox Side Effects Persisted More Than a Year After Acute Infection",
+      "description": "(MedPage Today) -- Patients with acute mpox infections experienced persistent physical, behavioral, and psychosocial side effects more than a year after illness, a cohort study suggested.\nAmong 154 people with clade II mpox infections, 58% had...",
+      "link": "https://www.medpagetoday.com/infectiousdisease/generalinfectiousdisease/119478",
+      "pubDate": "2026-01-19T22:00:00.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T23:00:04.840Z"
+    },
+    {
+      "id": "custom-1768639494118-1768863607044-s5nod1u6f",
+      "feedId": "custom-1768639494118",
+      "feedName": "The Verge",
+      "category": "Technology",
+      "title": "OpenAI’s 2026 ‘focus’ is ‘practical adoption’",
+      "description": "OpenAI plans to focus on \"practical adoption\" of AI in 2026, according to a blog post from CFO Sarah Friar. As the company spends a huge amount of money on infrastructure, OpenAI is working on \"closing the gap\" on what AI can do and how people actually use it. \"The opportunity is large and immediate, especially in health, science, and enterprise, where better intelligence translates directly into better outcomes.\"\nMuch of the blog post, titled \"A business that scales with the value of intelligence,\" is about how OpenAI has evolved since it launched ChatGPT and how it has scaled up its business. The company's weekly active user and daily act …\nRead the full story at The Verge.",
+      "link": "https://www.theverge.com/news/864229/openai-focus-practical-adoption-sarah-friar",
+      "pubDate": "2026-01-19T21:05:30.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T23:00:07.044Z"
+    },
+    {
+      "id": "custom-1768639498027-1768863609217-bytg1umvi",
+      "feedId": "custom-1768639498027",
+      "feedName": "Ars Technica",
+      "category": "Technology",
+      "title": "NASA’s Artemis II rocket rolls to launch pad, but key test looms ahead",
+      "description": "After a remarkably smooth launch campaign, Artemis II reached its last stop before the Moon.",
+      "link": "https://arstechnica.com/space/2026/01/nasas-artemis-ii-rocket-rolls-to-launch-pad-but-key-test-looms-ahead/",
+      "pubDate": "2026-01-19T22:01:52.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T23:00:09.217Z"
+    },
+    {
+      "id": "custom-1768639498027-1768863609217-umouor7e0",
+      "feedId": "custom-1768639498027",
+      "feedName": "Ars Technica",
+      "category": "Technology",
+      "title": "The first new Marathon game in decades will launch on March 5",
+      "description": "Development hasn't exactly been smooth since the extraction shooter's 2023 announcement.",
+      "link": "https://arstechnica.com/gaming/2026/01/bungies-delayed-marathon-revival-will-finally-launch-march-5/",
+      "pubDate": "2026-01-19T21:07:55.000Z",
+      "processed": false,
+      "createdAt": "2026-01-19T23:00:09.217Z"
+    },
+    {
+      "id": "phys-org-physics-1768870804011-7360j7z79",
+      "feedId": "phys-org-physics",
+      "feedName": "Phys.org Physics News",
+      "category": "Physics & Gravity",
+      "title": "Stealth quantum sensors unlock possibilities anywhere GPS doesn't work",
+      "description": "As commercial interest in quantum technologies accelerates, entrepreneurial minds at the University of Waterloo are not waiting for opportunities—they are creating them.",
+      "link": "https://phys.org/news/2026-01-stealth-quantum-sensors-possibilities-gps.html",
+      "pubDate": "2026-01-20T00:00:03.000Z",
+      "processed": false,
+      "createdAt": "2026-01-20T01:00:04.011Z"
+    },
+    {
+      "id": "stat-news-1768878002478-8m0fx63j0",
+      "feedId": "stat-news",
+      "feedName": "STAT News",
+      "category": "Health & Medicine",
+      "title": "STAT+: Congress revives bipartisan health care proposal, including drug middlemen provisions",
+      "description": "Elements of a health care deal that was blown up by Elon Musk are getting a fresh look in Congress.",
+      "link": "https://www.statnews.com/2026/01/19/bipartisan-health-care-package-pharmacy-benefit-manager/?utm_campaign=rss",
+      "pubDate": "2026-01-20T01:03:32.000Z",
+      "processed": false,
+      "createdAt": "2026-01-20T03:00:02.478Z"
     }
   ],
   "scheduledPosts": [
@@ -4334,13 +4418,24 @@
       "createdAt": "2026-01-19T13:33:05.589Z",
       "postedAt": null,
       "error": null
+    },
+    {
+      "id": "post-1768863604093-m1mtjx2zy",
+      "articleId": "custom-1768639494118-1768856414207-uekdf2s78",
+      "content": " Minneapolis is being tested like never before. As over 3,000 ICE agents occupy the city for a third week, I find myself explaining to colleagues across the country just how surreal this situation feels. 🤔 Is it really this bad?\n\nThis isn't just about immigration policy; it's about the resilience of a city and the impact on its healthcare system. Hospitals and clinics are bracing for the influx of detained individuals, while mental health professionals are overwhelmed by the psychological strain on residents and detainees alike. \n\nHow are your local healthcare facilities handling the unprecedented surge in demand? Share your insights and concerns in the comments below. 💬\n\n#Immigration #HealthcareImpact #ICE #MedicalEthics #PublicHealth\n\n---\n\nFeel free to adjust any part of the post to better fit your style or audience!",
+      "scheduledFor": "2026-01-20T00:00:04.091Z",
+      "status": "posted",
+      "linkedInPostId": null,
+      "createdAt": "2026-01-19T23:00:04.093Z",
+      "postedAt": "2026-01-20T00:30:00.560Z",
+      "error": null
     }
   ],
   "automationConfig": {
     "enabled": true,
     "postingInterval": 1,
-    "lastRun": "2026-01-19T13:33:05.766Z",
-    "nextRun": "2026-01-19T14:33:05.766Z",
+    "lastRun": "2026-01-19T23:00:04.354Z",
+    "nextRun": "2026-01-20T00:00:04.354Z",
     "scheduleType": "custom",
     "customSchedule": {
       "monday": [
