@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import logger from './config/logger.js';
-import DB_PATHS from './config/db-config.js';
+import DB_PATHS, { initializeDatabase, getDatabaseType } from './config/db-config.js';
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 import { healthCheck, liveness, readiness, metrics } from './middleware/healthCheck.js';
 import { apiLimiter } from './middleware/rateLimiter.js';
@@ -80,6 +80,14 @@ dotenv.config(); // Loads .env by default
 // Fallback for local development if .env.local is used
 dotenv.config({ path: '.env.local' });
 
+// Database initialization
+try {
+  const dbInfo = await initializeDatabase();
+  logger.info(`Database initialized: ${dbInfo.type}`);
+} catch (error) {
+  logger.error('Database initialization failed:', error);
+  process.exit(1);
+}
 
 // app initialization
 const app = express();
