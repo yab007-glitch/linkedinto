@@ -1,96 +1,28 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: linkedinto-mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-linkedinto_root_pass}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-linkedinto_db}
-      MYSQL_USER: ${MYSQL_USER:-linkedinto_user}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-linkedinto_pass}
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-      - ./db/migrations:/docker-entrypoint-initdb.d
-    networks:
-      - app-network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-linkedinto_root_pass}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: linkedinto-app
+  postgres:
+    image: postgres:16-alpine
+    container_name: linkedinto_postgres
     restart: unless-stopped
-    depends_on:
-      mysql:
-        condition: service_healthy
-    ports:
-      - "3001:3001"
     environment:
-      - NODE_ENV=production
-      - PORT=3001
-      - CORS_ORIGIN=http://localhost:5173
-      - DATABASE_TYPE=mysql
-      - MYSQL_HOST=mysql
-      - MYSQL_PORT=3306
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-linkedinto_db}
-      - MYSQL_USER=${MYSQL_USER:-linkedinto_user}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-linkedinto_pass}
-    env_file:
-      - .env.local
+      POSTGRES_USER: linkedinto
+      POSTGRES_PASSWORD: linkedinto_dev_pass
+      POSTGRES_DB: linkedinto
+    ports:
+      - "5432:5432"
     volumes:
-      - ./logs:/app/logs
-      - ./automation-db.json:/app/automation-db.json
-      - ./db.json:/app/db.json
-    healthcheck:
-      test: [ "CMD", "node", "-e", "require('http').get('http://localhost:3001/health/live', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" ]
-      interval: 30s
-      timeout: 3s
-      retries: 3
-      start_period: 40s
-    networks:
-      - app-network
-  # Optional: Add Redis for caching (Phase 3)
-  # redis:
-  #   image: redis:7-alpine
-  #   container_name: linkedinto-redis
-  #   restart: unless-stopped
-  #   ports:
-  #     - "6379:6379"
-  #   volumes:
-  #     - redis-data:/data
-  #   networks:
-  #     - app-network
+      - postgres_data:/var/lib/postgresql/data
 
-  # Optional: Add PostgreSQL (Phase 2)
-  # postgres:
-  #   image: postgres:16-alpine
-  #   container_name: linkedinto-db
-  #   restart: unless-stopped
-  #   environment:
-  #     POSTGRES_USER: linkedinto
-  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
-  #     POSTGRES_DB: linkedinto
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres-data:/var/lib/postgresql/data
-  #   networks:
-  #     - app-network
-
-networks:
-  app-network:
-    driver: bridge
+  redis:
+    image: redis:7-alpine
+    container_name: linkedinto_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
 
 volumes:
-  mysql_data:
-  redis-data:
-  postgres-data:
+  postgres_data:
+  redis_data:

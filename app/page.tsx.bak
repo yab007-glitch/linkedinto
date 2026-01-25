@@ -1,0 +1,118 @@
+import Link from 'next/link';
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Header */}
+      <header className="container mx-auto px-4 py-6">
+        <nav className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-blue-600">LinkedInto</h1>
+          <Link
+            href="/api/auth/signin"
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            Sign In with LinkedIn
+          </Link>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <main className="container mx-auto px-4 py-20">
+        <div className="text-center max-w-4xl mx-auto">
+          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+            LinkedIn Content Creator
+            <span className="block text-blue-600 mt-2">
+              Powered by AI
+            </span>
+          </h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Create, schedule, and publish engaging LinkedIn posts with AI-powered content generation
+            and automated posting.
+          </p>
+          <Link
+            href="/api/auth/signin"
+            className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
+          >
+            Get Started Free
+          </Link>
+        </div>
+
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-3 gap-8 mt-20">
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <div className="text-4xl mb-4">></div>
+            <h3 className="text-xl font-bold mb-3">AI-Powered Content</h3>
+            <p className="text-gray-600">
+              Generate engaging LinkedIn posts using GPT-4. Choose tone, length, and topic for
+              personalized content.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <div className="text-4xl mb-4">‚è∞</div>
+            <h3 className="text-xl font-bold mb-3">Smart Scheduling</h3>
+            <p className="text-gray-600">
+              Schedule posts for optimal engagement times. Set up recurring posts and manage your
+              content calendar.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <div className="text-4xl mb-4">= </div>
+            <h3 className="text-xl font-bold mb-3">Analytics Dashboard</h3>
+            <p className="text-gray-600">
+              Track post performance with detailed analytics. Monitor impressions, likes, comments,
+              and shares.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <div className="text-4xl mb-4">=›</div>
+            <h3 className="text-xl font-bold mb-3">Template Library</h3>
+            <p className="text-gray-600">
+              Use pre-built templates for common post types. Create custom templates with variable
+              substitution.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <div className="text-4xl mb-4">=</div>
+            <h3 className="text-xl font-bold mb-3">Automated Posting</h3>
+            <p className="text-gray-600">
+              Publish directly to LinkedIn via official API. Reliable queue system with automatic
+              retries.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <div className="text-4xl mb-4"><®</div>
+            <h3 className="text-xl font-bold mb-3">Rich Editor</h3>
+            <p className="text-gray-600">
+              Format your posts with hashtags, mentions, and emojis. Preview before publishing.
+            </p>
+          </div>
+        </div>
+
+        {/* Tech Stack Section */}
+        <div className="mt-20 text-center">
+          <h3 className="text-2xl font-bold mb-8 text-gray-900">Built With Modern Technologies</h3>
+          <div className="flex flex-wrap justify-center gap-6">
+            <div className="bg-white px-6 py-3 rounded-lg shadow">Next.js 14</div>
+            <div className="bg-white px-6 py-3 rounded-lg shadow">TypeScript</div>
+            <div className="bg-white px-6 py-3 rounded-lg shadow">PostgreSQL</div>
+            <div className="bg-white px-6 py-3 rounded-lg shadow">Prisma ORM</div>
+            <div className="bg-white px-6 py-3 rounded-lg shadow">OpenAI GPT-4</div>
+            <div className="bg-white px-6 py-3 rounded-lg shadow">LinkedIn API</div>
+            <div className="bg-white px-6 py-3 rounded-lg shadow">Bull Queue</div>
+            <div className="bg-white px-6 py-3 rounded-lg shadow">Redis</div>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="container mx-auto px-4 py-8 mt-20 text-center text-gray-600">
+        <p>&copy; 2026 LinkedInto. Built for seamless LinkedIn content management.</p>
+      </footer>
+    </div>
+  );
+}
