@@ -6,19 +6,19 @@ import LinkedIn from "next-auth/providers/linkedin";
 import { prisma } from "./prisma";
 
 if (!process.env.LINKEDIN_CLIENT_ID) {
-  throw new Error("Missing LINKEDIN_CLIENT_ID environment variable");
+  console.warn("Missing LINKEDIN_CLIENT_ID environment variable - authentication will fail");
 }
 
 if (!process.env.LINKEDIN_CLIENT_SECRET) {
-  throw new Error("Missing LINKEDIN_CLIENT_SECRET environment variable");
+  console.warn("Missing LINKEDIN_CLIENT_SECRET environment variable - authentication will fail");
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     LinkedIn({
-      clientId: process.env.LINKEDIN_CLIENT_ID,
-      clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+      clientId: process.env.LINKEDIN_CLIENT_ID ?? "",
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET ?? "",
       authorization: {
         params: {
           scope: "openid profile email w_member_social",
