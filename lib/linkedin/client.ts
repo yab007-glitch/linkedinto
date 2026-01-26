@@ -112,7 +112,7 @@ export class LinkedInClient {
   /**
    * Upload media to LinkedIn (for images/videos)
    */
-  async uploadMedia(file: Buffer, _fileName: string): Promise<string> {
+  async uploadMedia(file: Buffer): Promise<string> {
     try {
       // Step 1: Register upload
       const registerResponse = await axios.post(
