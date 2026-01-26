@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+
 
 interface AutomationRequest {
   count?: number;
@@ -47,6 +45,10 @@ export async function POST(request: NextRequest) {
     const results: GeneratedPost[] = [];
     let totalCost = 0;
     let totalTokens = 0;
+
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY!,
+    });
 
     // Step 1: Discover trending topics
     const topicsResponse = await openai.chat.completions.create({

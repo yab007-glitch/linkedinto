@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+
 
 // Topic categories for LinkedIn content
 const TOPIC_CATEGORIES = [
@@ -39,6 +37,10 @@ export async function GET() {
     const selectedCategories = TOPIC_CATEGORIES
       .sort(() => Math.random() - 0.5)
       .slice(0, 3);
+
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY!,
+    });
 
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',

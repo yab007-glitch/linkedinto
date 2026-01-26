@@ -1,8 +1,6 @@
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+
 
 export interface AIGenerationOptions {
   topic?: string;
@@ -31,6 +29,17 @@ interface GeneratedContent {
 }
 
 export class AIContentGenerator {
+  private openai: OpenAI | null = null;
+
+  private getClient(): OpenAI {
+    if (!this.openai) {
+      this.openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY!,
+      });
+    }
+    return this.openai;
+  }
+
   /**
    * Generate LinkedIn post content using AI
    */
@@ -38,7 +47,7 @@ export class AIContentGenerator {
     const prompt = this.buildPrompt(options);
 
     try {
-      const response = await openai.chat.completions.create({
+      const response = await this.getClient().chat.completions.create({
         model: 'gpt-4o-mini', // Using gpt-4o-mini which supports json_object
         messages: [
           {
@@ -96,7 +105,7 @@ export class AIContentGenerator {
    */
   async improveContent(content: string, instructions: string): Promise<AIGenerationResult> {
     try {
-      const response = await openai.chat.completions.create({
+      const response = await this.getClient().chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
           {
