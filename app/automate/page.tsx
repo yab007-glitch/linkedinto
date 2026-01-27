@@ -108,7 +108,7 @@ export default function AutomatePage() {
     setPostingIndex(index);
 
     try {
-      const fullContent = post.content + '\n\n' + post.hashtags.map(h => `#${h}`).join(' ');
+      const fullContent = post.content + '\n\n' + (post.hashtags?.map(h => `#${h}`).join(' ') || '');
       
       const res = await fetch('/api/dev/post', {
         method: 'POST',
@@ -281,7 +281,7 @@ export default function AutomatePage() {
             <div className="bg-slate-800/50 rounded-2xl border border-slate-700 p-6 mb-6">
               <h3 className="text-lg font-bold text-white mb-4">🔥 Discovered Topics</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {trendingTopics.map((topic, i) => (
+                {trendingTopics?.map((topic, i) => (
                   <div key={`${topic.topic}-${i}`} className="bg-slate-700/30 rounded-lg p-4 border border-slate-600/50">
                     <div className="text-xs text-blue-400 mb-1">{topic.category}</div>
                     <div className="text-white font-medium mb-2">{topic.topic}</div>
@@ -326,7 +326,7 @@ export default function AutomatePage() {
               <div className="bg-slate-800/50 rounded-2xl border border-slate-700 p-6">
                 <h3 className="text-lg font-bold text-white mb-4">📝 Generated Posts</h3>
                 <div className="space-y-4">
-                  {results.results.map((post, index) => (
+                  {results.results?.map((post, index) => (
                     <div
                       key={`${post.topic}-${index}`}
                       className={`rounded-xl border p-4 transition-colors ${
@@ -359,9 +359,9 @@ export default function AutomatePage() {
                         <div className="text-slate-800 text-sm whitespace-pre-wrap line-clamp-4">
                           {post.content}
                         </div>
-                        {post.hashtags.length > 0 && (
+                        {post.hashtags?.length > 0 && (
                           <div className="mt-2 text-blue-600 text-xs">
-                            {post.hashtags.map(h => `#${h}`).join(' ')}
+                            {post.hashtags?.map(h => `#${h}`).join(' ')}
                           </div>
                         )}
                       </div>
@@ -432,7 +432,7 @@ export default function AutomatePage() {
                       {selectedPost.content}
                     </div>
                     <div className="mt-4 text-blue-600">
-                      {selectedPost.hashtags.map(h => `#${h}`).join(' ')}
+                      {selectedPost.hashtags?.map(h => `#${h}`).join(' ')}
                     </div>
                   </div>
                 </div>
