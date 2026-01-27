@@ -58,8 +58,8 @@ export default function AutomatePage() {
   useEffect(() => {
     fetch('/api/dev/profile')
       .then(res => res.json())
-      .then(data => setProfile(data))
-      .catch(console.error);
+      .then(data => setProfile(data || {}))
+      .catch(err => console.error('Profile fetch failed', err));
     console.log('Automate Page v1.2.1 - Fix applied again');
   }, []);
 
@@ -69,7 +69,7 @@ export default function AutomatePage() {
     try {
       const res = await fetch('/api/dev/topics');
       const data = await res.json();
-      setTrendingTopics(data.topics || []);
+      setTrendingTopics(data?.topics || []);
     } catch (error) {
       console.error('Failed to discover topics:', error);
     } finally {
@@ -278,7 +278,7 @@ export default function AutomatePage() {
           </div>
 
           {/* Trending Topics Preview */}
-          {trendingTopics.length > 0 && (
+          {trendingTopics?.length > 0 && (
             <div className="bg-slate-800/50 rounded-2xl border border-slate-700 p-6 mb-6">
               <h3 className="text-lg font-bold text-white mb-4">🔥 Discovered Topics</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
