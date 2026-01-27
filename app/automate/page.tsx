@@ -60,7 +60,7 @@ export default function AutomatePage() {
       .then(res => res.json())
       .then(data => setProfile(data))
       .catch(console.error);
-    console.log('Automate Page v1.2.0 - Fix applied');
+    console.log('Automate Page v1.2.1 - Fix applied again');
   }, []);
 
   // Discover trending topics
