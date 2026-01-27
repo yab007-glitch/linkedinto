@@ -74,6 +74,7 @@ export default function DashboardPage() {
     };
     
     fetchProfile();
+    console.log('Dashboard v1.1.0 - Fix applied');
   }, []);
 
   // Generate content using AI
