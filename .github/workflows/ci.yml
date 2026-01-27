@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
+        env:
+          # We don't need real secrets for the build since we handle missing env vars gracefully
+          OPENAI_API_KEY: "dummy_openai_key"
+          LINKEDIN_CLIENT_ID: "dummy_client_id"
+          LINKEDIN_CLIENT_SECRET: "dummy_client_secret"
+          NEXTAUTH_SECRET: "dummy_nextauth_secret"
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/linkedinto" # Dummy URL is fine as long as we don't connect
