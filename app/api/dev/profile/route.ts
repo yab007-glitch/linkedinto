@@ -5,6 +5,10 @@ import axios from 'axios';
  * GET /api/dev/profile - Get LinkedIn profile using access token
  */
 export async function GET() {
+  if (process.env.DEV_MODE !== 'true') {
+    return NextResponse.json({ error: 'Dev mode not enabled' }, { status: 403 });
+  }
+
   const accessToken = process.env.LINKEDIN_ACCESS_TOKEN;
 
   if (!accessToken) {
