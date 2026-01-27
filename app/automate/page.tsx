@@ -226,18 +226,20 @@ export default function AutomatePage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Auto-Post</label>
-                <button
-                  type="button"
-                  onClick={() => setAutoPost(!autoPost)}
-                  className={`w-full px-4 py-2 rounded-lg font-medium transition-colors ${
-                    autoPost 
-                      ? 'bg-green-600 text-white' 
-                      : 'bg-slate-700/50 border border-slate-600 text-slate-400'
-                  }`}
-                >
-                  {autoPost ? '✓ Auto-Post ON' : 'Auto-Post OFF'}
-                </button>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Auto-Post
+                  <button
+                    type="button"
+                    onClick={() => setAutoPost(!autoPost)}
+                    className={`w-full mt-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                      autoPost 
+                        ? 'bg-green-600 text-white' 
+                        : 'bg-slate-700/50 border border-slate-600 text-slate-400'
+                    }`}
+                  >
+                    {autoPost ? '✓ Auto-Post ON' : 'Auto-Post OFF'}
+                  </button>
+                </label>
               </div>
             </div>
 
@@ -280,7 +282,7 @@ export default function AutomatePage() {
               <h3 className="text-lg font-bold text-white mb-4">🔥 Discovered Topics</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {trendingTopics.map((topic, i) => (
-                  <div key={i} className="bg-slate-700/30 rounded-lg p-4 border border-slate-600/50">
+                  <div key={`${topic.topic}-${i}`} className="bg-slate-700/30 rounded-lg p-4 border border-slate-600/50">
                     <div className="text-xs text-blue-400 mb-1">{topic.category}</div>
                     <div className="text-white font-medium mb-2">{topic.topic}</div>
                     <div className="text-sm text-slate-400 italic">&ldquo;{topic.hook}&rdquo;</div>
@@ -298,23 +300,23 @@ export default function AutomatePage() {
                 <h3 className="text-lg font-bold text-white mb-4">📊 Generation Summary</h3>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   <div className="bg-slate-700/30 rounded-lg p-4 text-center">
-                    <div className="text-3xl font-bold text-white">{results.summary.total}</div>
+                    <div className="text-3xl font-bold text-white">{results.summary?.total || 0}</div>
                     <div className="text-sm text-slate-400">Total</div>
                   </div>
                   <div className="bg-blue-600/20 rounded-lg p-4 text-center border border-blue-600/30">
-                    <div className="text-3xl font-bold text-blue-400">{results.summary.generated}</div>
+                    <div className="text-3xl font-bold text-blue-400">{results.summary?.generated || 0}</div>
                     <div className="text-sm text-slate-400">Generated</div>
                   </div>
                   <div className="bg-green-600/20 rounded-lg p-4 text-center border border-green-600/30">
-                    <div className="text-3xl font-bold text-green-400">{results.summary.posted}</div>
+                    <div className="text-3xl font-bold text-green-400">{results.summary?.posted || 0}</div>
                     <div className="text-sm text-slate-400">Posted</div>
                   </div>
                   <div className="bg-slate-700/30 rounded-lg p-4 text-center">
-                    <div className="text-3xl font-bold text-white">{results.summary.totalTokens.toLocaleString()}</div>
+                    <div className="text-3xl font-bold text-white">{results.summary?.totalTokens?.toLocaleString() || 0}</div>
                     <div className="text-sm text-slate-400">Tokens</div>
                   </div>
                   <div className="bg-green-600/20 rounded-lg p-4 text-center border border-green-600/30">
-                    <div className="text-3xl font-bold text-green-400">{results.summary.formattedCost}</div>
+                    <div className="text-3xl font-bold text-green-400">{results.summary?.formattedCost || '$0.00'}</div>
                     <div className="text-sm text-slate-400">Total Cost</div>
                   </div>
                 </div>
@@ -326,7 +328,7 @@ export default function AutomatePage() {
                 <div className="space-y-4">
                   {results.results.map((post, index) => (
                     <div
-                      key={index}
+                      key={`${post.topic}-${index}`}
                       className={`rounded-xl border p-4 transition-colors ${
                         post.status === 'posted' 
                           ? 'bg-green-600/10 border-green-600/30' 
