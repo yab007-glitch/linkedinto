@@ -32,11 +32,12 @@ export async function GET() {
     return NextResponse.json({ error: 'Dev mode not enabled' }, { status: 403 });
   }
 
+  // Select 3 random categories to focus on
+  const selectedCategories = TOPIC_CATEGORIES
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
+
   try {
-    // Select 3 random categories to focus on
-    const selectedCategories = TOPIC_CATEGORIES
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 3);
 
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY!,
@@ -102,9 +103,10 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Error discovering topics:', error);
-    return NextResponse.json(
-      { error: 'Failed to discover topics' },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      topics: [],
+      categories: selectedCategories,
+      error: 'Failed to discover topics',
+    }, { status: 500 });
   }
 }

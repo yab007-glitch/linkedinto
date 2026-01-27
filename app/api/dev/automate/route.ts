@@ -99,8 +99,8 @@ export async function POST(request: NextRequest) {
     totalCost += topicInputTokens * INPUT_COST_PER_TOKEN + topicOutputTokens * OUTPUT_COST_PER_TOKEN;
     totalTokens += topicsResponse.usage?.total_tokens || 0;
 
-    // Step 2: Generate posts for each topic
-    for (const topicData of topics) {
+    // Step 2: Generate posts for each topic (Parallel Execution)
+    const generationPromises = topics.map(async (topicData: any) => {
       try {
         const lengthGuide = {
           short: '80-120 words',
@@ -156,9 +156,8 @@ Create an exceptional LinkedIn post that will resonate with professionals and dr
         const postInputTokens = 350;
         const postOutputTokens = (postResponse.usage?.total_tokens || 400) - postInputTokens;
         const postCost = postInputTokens * INPUT_COST_PER_TOKEN + postOutputTokens * OUTPUT_COST_PER_TOKEN;
-        totalCost += postCost;
-        totalTokens += postResponse.usage?.total_tokens || 0;
-
+        
+        // Return result and cost/tokens for aggregation
         const result: GeneratedPost = {
           topic: topicData.topic,
           category: topicData.category,
@@ -177,14 +176,12 @@ Create an exceptional LinkedIn post that will resonate with professionals and dr
             if (accessToken) {
               const axios = (await import('axios')).default;
               
-              // Get user ID
               const profileRes = await axios.get('https://api.linkedin.com/v2/userinfo', {
                 headers: { Authorization: `Bearer ${accessToken}` },
               });
               const linkedInId = profileRes.data.sub;
 
-              // Create post
-              const fullContent = result.content + '\n\n' + result.hashtags.map(h => `#${h}`).join(' ');
+              const fullContent = result.content + '\n\n' + result.hashtags.map((h: string) => `#${h}`).join(' ');
               
               const postRes = await axios.post(
                 'https://api.linkedin.com/v2/ugcPosts',
@@ -218,14 +215,11 @@ Create an exceptional LinkedIn post that will resonate with professionals and dr
           }
         }
 
-        results.push(result);
-
-        // Add delay between generations to avoid rate limiting
-        await new Promise(resolve => setTimeout(resolve, 500));
+        return result;
 
       } catch (genError) {
         console.error('Post generation failed:', genError);
-        results.push({
+        return {
           topic: topicData.topic,
           category: topicData.category,
           content: '',
@@ -234,9 +228,18 @@ Create an exceptional LinkedIn post that will resonate with professionals and dr
           status: 'failed',
           cost: 0,
           tokens: 0,
-        });
+        } as GeneratedPost;
       }
-    }
+    });
+
+    const generatedResults = await Promise.all(generationPromises);
+    
+    // Aggregate results
+    generatedResults.forEach(result => {
+      results.push(result);
+      totalCost += result.cost;
+      totalTokens += result.tokens;
+    });
 
     return NextResponse.json({
       success: true,
