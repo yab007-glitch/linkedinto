@@ -1,0 +1,28 @@
+name: Autonomous Scheduler
+
+on:
+  schedule:
+    - cron: "0 * * * *" # Runs every hour at minute 0
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  trigger-automation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Smart Scheduler
+        run: |
+          echo "Triggering Autonomous Scheduler..."
+          response=$(curl -s -w "%{http_code}" -X POST https://linkedinto-production.up.railway.app/api/cron/process \
+          -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+          -H "Content-Type: application/json")
+
+          http_code=${response: -3}
+          content=${response:0:${#response}-3}
+
+          echo "Response Code: $http_code"
+          echo "Response Body: $content"
+
+          if [ "$http_code" -ne 200 ]; then
+            echo "::error::Failed to trigger scheduler"
+            exit 1
+          fi

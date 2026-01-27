@@ -1,4 +1,11 @@
 {
+  "automationSettings": {
+    "isEnabled": false,
+    "frequency": "MEDIUM",
+    "topics": [],
+    "tone": "Professional",
+    "smartTimezone": "UTC"
+  },
   "feeds": [
     {
       "id": "healthcare-dive",
