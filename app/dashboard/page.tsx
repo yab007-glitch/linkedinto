@@ -110,8 +110,8 @@ export default function DashboardPage() {
       if (data.cost && data.tokenUsage) {
         setSessionStats(prev => ({
           totalGenerations: prev.totalGenerations + 1,
-          totalTokens: prev.totalTokens + (data.tokenUsage.total || 0),
-          totalCost: prev.totalCost + (data.cost.total || 0),
+          totalTokens: prev.totalTokens + (data.tokenUsage?.total || 0),
+          totalCost: prev.totalCost + (data.cost?.total || 0),
         }));
       }
     } catch (err) {
