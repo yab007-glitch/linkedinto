@@ -54,21 +54,25 @@ export default function DashboardPage() {
     totalCost: 0,
   });
 
-  // Fetch LinkedIn profile on first load
-  const fetchProfile = async () => {
-    try {
-      const res = await fetch('/api/dev/profile');
-      if (res.ok) {
-        const data = await res.json();
-        setProfile(data);
-      }
-    } catch (err) {
-      console.error('Failed to fetch profile:', err);
-    }
-  };
-
   // Load profile on mount
   useEffect(() => {
+    // Fetch LinkedIn profile on first load
+    const fetchProfile = async () => {
+      try {
+        const res = await fetch('/api/dev/profile');
+        if (res.status === 403) {
+          // Dev mode is not enabled or user not authorized
+          return;
+        }
+        if (res.ok) {
+          const data = await res.json();
+          setProfile(data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch profile:', err);
+      }
+    };
+    
     fetchProfile();
   }, []);
 
