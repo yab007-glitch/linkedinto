@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-
+interface TopicData {
+  topic: string;
+  category: string;
+  hook: string;
+}
 
 interface AutomationRequest {
   count?: number;
@@ -100,7 +104,7 @@ export async function POST(request: NextRequest) {
     totalTokens += topicsResponse.usage?.total_tokens || 0;
 
     // Step 2: Generate posts for each topic (Parallel Execution)
-    const generationPromises = topics.map(async (topicData: any) => {
+    const generationPromises = topics.map(async (topicData: TopicData) => {
       try {
         const lengthGuide = {
           short: '80-120 words',

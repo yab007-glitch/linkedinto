@@ -13,6 +13,12 @@ interface AutomationSettings {
   smartTimezone: string;
 }
 
+// Interface for DB data structure
+interface DbData {
+  automationSettings: AutomationSettings;
+  [key: string]: unknown;
+}
+
 const DEFAULT_SETTINGS: AutomationSettings = {
   isEnabled: false,
   frequency: 'MEDIUM',
@@ -42,7 +48,7 @@ function readDb() {
 }
 
 // Helper to write DB
-function writeDb(data: any) {
+function writeDb(data: DbData) {
   try {
     fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
     return true;

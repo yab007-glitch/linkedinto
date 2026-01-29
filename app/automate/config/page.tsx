@@ -172,9 +172,9 @@ export default function AutomationConfigPage() {
                         { id: 'MEDIUM', label: 'Growth (2/day)', desc: 'Morning and Evening posts' },
                         { id: 'HIGH', label: 'Aggressive (3/day)', desc: 'Morning, Noon, and Evening' },
                       ].map((opt) => (
-                        <div 
+                        <div
                           key={opt.id}
-                          onClick={() => setSettings({ ...settings, frequency: opt.id as any })}
+                          onClick={() => setSettings({ ...settings, frequency: opt.id as AutomationSettings['frequency'] })}
                           className={`cursor-pointer p-4 rounded-lg border text-left transition-all ${
                             settings.frequency === opt.id
                               ? 'bg-blue-600/20 border-blue-500 ring-1 ring-blue-500'
