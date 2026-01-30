@@ -27,6 +27,41 @@ interface GeneratedPost {
   tokens: number;
 }
 
+// Helper to clean and parse JSON from LLM response
+function parseLLMJson(text: string) {
+  try {
+    let json = text;
+    if (text.includes('```json')) {
+      json = text.replace(/```json\n?/g, '').replace(/```\n?/g, '');
+    } else if (text.includes('```')) {
+      json = text.replace(/```\n?/g, '');
+    }
+    
+    // Determine if it's an object or array based on what comes first
+    const firstBrace = json.indexOf('{');
+    const firstBracket = json.indexOf('[');
+    
+    if (firstBracket !== -1 && (firstBrace === -1 || firstBracket < firstBrace)) {
+      // It's an array
+      const lastBracket = json.lastIndexOf(']');
+      if (lastBracket !== -1) {
+        json = json.substring(firstBracket, lastBracket + 1);
+      }
+    } else if (firstBrace !== -1) {
+      // It's an object
+      const lastBrace = json.lastIndexOf('}');
+      if (lastBrace !== -1) {
+        json = json.substring(firstBrace, lastBrace + 1);
+      }
+    }
+    
+    return JSON.parse(json);
+  } catch (e) {
+    console.error('JSON Parse Error:', e);
+    return null;
+  }
+}
+
 // Cost constants
 const INPUT_COST_PER_TOKEN = 0.00000015;
 const OUTPUT_COST_PER_TOKEN = 0.0000006;
@@ -51,12 +86,13 @@ export async function POST(request: NextRequest) {
     let totalTokens = 0;
 
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY!,
+      baseURL: 'https://router.huggingface.co/v1/',
+      apiKey: process.env.HUGGINGFACE_API_KEY
     });
 
     // Step 1: Discover trending topics
     const topicsResponse = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: 'zai-org/GLM-4.7:novita',
       messages: [
         {
           role: 'system',
@@ -87,15 +123,7 @@ export async function POST(request: NextRequest) {
       max_tokens: 800,
     });
 
-    const topicsContent = topicsResponse.choices[0].message.content || '[]';
-    let topicsJson = topicsContent;
-    if (topicsContent.includes('```json')) {
-      topicsJson = topicsContent.replace(/```json\n?/g, '').replace(/```\n?/g, '');
-    } else if (topicsContent.includes('```')) {
-      topicsJson = topicsContent.replace(/```\n?/g, '');
-    }
-    
-    const topics = JSON.parse(topicsJson.trim());
+    const topics = parseLLMJson(topicsResponse.choices[0].message.content || '[]') || [];
     
     // Calculate topic discovery cost
     const topicInputTokens = 300;
@@ -113,7 +141,7 @@ export async function POST(request: NextRequest) {
         };
 
         const postResponse = await openai.chat.completions.create({
-          model: 'gpt-4o-mini',
+          model: 'zai-org/GLM-4.7:novita',
           messages: [
             {
               role: 'system',
@@ -146,15 +174,7 @@ Create an exceptional LinkedIn post that will resonate with professionals and dr
           max_tokens: 600,
         });
 
-        const postContent = postResponse.choices[0].message.content || '{}';
-        let postJson = postContent;
-        if (postContent.includes('```json')) {
-          postJson = postContent.replace(/```json\n?/g, '').replace(/```\n?/g, '');
-        } else if (postContent.includes('```')) {
-          postJson = postContent.replace(/```\n?/g, '');
-        }
-        
-        const post = JSON.parse(postJson.trim());
+        const post = parseLLMJson(postResponse.choices[0].message.content || '{}') || {};
 
         // Calculate cost
         const postInputTokens = 350;

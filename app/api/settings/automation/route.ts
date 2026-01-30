@@ -7,10 +7,13 @@ const DB_PATH = path.join(process.cwd(), 'automation-db.json');
 // Interface for Settings
 interface AutomationSettings {
   isEnabled: boolean;
-  frequency: 'LOW' | 'MEDIUM' | 'HIGH';
+  frequency: 'LOW' | 'MEDIUM' | 'HIGH' | 'ULTRA';
   topics: string[];
   tone: string;
   smartTimezone: string;
+  lastPosted?: string;
+  customIntervalEnabled?: boolean;
+  customIntervalMins?: number;
 }
 
 // Interface for DB data structure
@@ -25,6 +28,8 @@ const DEFAULT_SETTINGS: AutomationSettings = {
   topics: [],
   tone: 'Professional',
   smartTimezone: 'UTC',
+  customIntervalEnabled: false,
+  customIntervalMins: 60,
 };
 
 // Helper to read DB
