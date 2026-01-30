@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 interface AutomationSettings {
   isEnabled: boolean;
@@ -13,7 +12,6 @@ interface AutomationSettings {
 }
 
 export default function AutomationConfigPage() {
-  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -77,7 +75,7 @@ export default function AutomationConfigPage() {
       const data = await res.json();
       setSettings(data);
       setSuccess('Settings saved successfully! Automation is updated.');
-    } catch (err) {
+    } catch {
       setError('Failed to save settings. Please try again.');
     } finally {
       setSaving(false);
@@ -163,17 +161,18 @@ export default function AutomationConfigPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Frequency */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <span className="block text-sm font-medium text-slate-300 mb-2">
                        Posting Frequency
-                    </label>
-                    <div className="grid gap-3">
+                    </span>
+                    <div className="grid gap-3" role="radiogroup" aria-label="Posting Frequency">
                       {[
                         { id: 'LOW', label: 'Steady (1/day)', desc: 'Posts once daily at optimal time' },
                         { id: 'MEDIUM', label: 'Growth (2/day)', desc: 'Morning and Evening posts' },
                         { id: 'HIGH', label: 'Aggressive (3/day)', desc: 'Morning, Noon, and Evening' },
                       ].map((opt) => (
-                        <div
+                        <button
                           key={opt.id}
+                          type="button"
                           onClick={() => setSettings({ ...settings, frequency: opt.id as AutomationSettings['frequency'] })}
                           className={`cursor-pointer p-4 rounded-lg border text-left transition-all ${
                             settings.frequency === opt.id
@@ -185,7 +184,7 @@ export default function AutomationConfigPage() {
                             {opt.label}
                           </div>
                           <div className="text-xs text-slate-400 mt-1">{opt.desc}</div>
-                        </div>
+                        </button>
                       ))}
                     </div>
                   </div>

@@ -1,8 +1,13 @@
 {
   "automationSettings": {
-    "isEnabled": false,
+    "isEnabled": true,
     "frequency": "MEDIUM",
-    "topics": [],
+    "topics": [
+      "Artificial Intelligence",
+      "SaaS Growth",
+      "Leadership",
+      "Remote Work"
+    ],
     "tone": "Professional",
     "smartTimezone": "UTC"
   },

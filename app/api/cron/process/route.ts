@@ -19,7 +19,7 @@ function readDb() {
   try {
     if (!fs.existsSync(DB_PATH)) return null;
     return JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
-  } catch (error) {
+  } catch {
     return null;
   }
 }
